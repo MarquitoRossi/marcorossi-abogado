@@ -1,7 +1,7 @@
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import QueHago from '@/components/QueHago';
-import ComoTrabajo from '@/components/ComoTrabajo';
+import QueEsperar from '@/components/QueEsperar';
 import Servicios from '@/components/Servicios';
 import QuienSoy from '@/components/QuienSoy';
 import Recursos from '@/components/Recursos';
@@ -15,7 +15,7 @@ export default function Index() {
       <main>
         <Hero />
         <QueHago />
-        <ComoTrabajo />
+        <QueEsperar />
         <Servicios />
         <QuienSoy />
         <Recursos />

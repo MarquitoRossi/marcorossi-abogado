@@ -6,7 +6,7 @@ import logoNavy from '@/assets/logo-navy.svg';
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#especialidades', label: 'Especialidades' },
-  { href: '#como-trabajo', label: 'Cómo trabajo' },
+  { href: '#que-esperar', label: 'Nuestro estudio' },
   { href: '#servicios', label: 'Servicios' },
   { href: '#quien-soy', label: 'Quién soy' },
   { href: '#contacto', label: 'Contacto' },
