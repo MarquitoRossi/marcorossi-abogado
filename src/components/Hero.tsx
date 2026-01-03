@@ -40,17 +40,12 @@ export default function Hero() {
 
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-8 opacity-0 animate-fade-in-up animation-delay-200">
-              Marco Rossi: Defensa <br className="hidden md:block" />
-              legal <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">estratégica</span> para <br className="hidden md:block" />
-              la economía digital.
+              Marco Rossi. <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Abogado litigante</span> con foco en prueba digital.
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg md:text-xl lg:text-2xl text-white/60 max-w-2xl mb-12 opacity-0 animate-fade-in animation-delay-400 leading-relaxed font-medium">
-              Abogado especialista en transformar la complejidad tecnológica en soluciones jurídicas sólidas. Docente, autor y asesor de confianza en el ecosistema tech.
-              <span className="block mt-4 text-sm md:text-base text-white/40 font-normal">
-                Donde la innovación encuentra seguridad legal.
-              </span>
+            <p className="text-lg md:text-xl lg:text-2xl text-white/60 max-w-3xl mb-12 opacity-0 animate-fade-in animation-delay-400 leading-relaxed font-medium">
+              Los conflictos actuales siempre dejan rastro en el entorno digital. Haber trabajado casi diez años dentro de la Justicia me permite comprender cómo se deciden los casos y transformar esa experiencia en estrategias eficaces para conflictos jurídicos complejos.
             </p>
 
             {/* CTA Buttons */}
