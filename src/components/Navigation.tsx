@@ -5,7 +5,7 @@ import logoNavy from '@/assets/logo-navy.svg';
 
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
-  { href: '#que-hago', label: 'Qué hago' },
+  { href: '#que-hago', label: 'Conflictos' },
   { href: '#como-trabajo', label: 'Cómo trabajo' },
   { href: '#servicios', label: 'Servicios' },
   { href: '#quien-soy', label: 'Quién soy' },
@@ -85,8 +85,8 @@ export default function Navigation() {
                     scrollToSection(link.href);
                   }}
                   className={`text-sm font-bold tracking-tight transition-all duration-300 relative py-2 group ${isScrolled
-                      ? (activeSection === link.href.substring(1) ? 'text-accent' : 'text-foreground/70 hover:text-foreground')
-                      : (activeSection === link.href.substring(1) ? 'text-white underline-offset-8' : 'text-white/70 hover:text-white')
+                    ? (activeSection === link.href.substring(1) ? 'text-accent' : 'text-foreground/70 hover:text-foreground')
+                    : (activeSection === link.href.substring(1) ? 'text-white underline-offset-8' : 'text-white/70 hover:text-white')
                     }`}
                 >
                   {link.label}
