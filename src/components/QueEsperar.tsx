@@ -10,17 +10,17 @@ const expectations = [
     {
         icon: DollarSign,
         title: "Honorarios y costos",
-        description: "Nuestro trabajo es profesional y tiene costo. Informamos con transparencia los honorarios y los gastos estimados antes de iniciar cualquier intervención. Evitamos prometer resultados y evitamos también sorpresas económicas: todo se acuerda por escrito."
+        description: "Nuestro trabajo es profesional y tiene costo. Informamos con transparencia los honorarios y los gastos estimados antes de iniciar cualquier intervención. Evitamos prometer resultados y también evitamos sorpresas económicas: todo se acuerda por escrito."
     },
     {
         icon: Search,
         title: "Cómo saber si podemos asumir tu caso",
-        description: "Podés contactarte para una consulta inicial. En esa instancia revisamos la situación, la documentación disponible y la prueba digital vinculada al conflicto. A partir de ese encuentro definimos si corresponde avanzar y en qué modalidad de intervención."
+        description: "Podés solicitar una consulta inicial. En esa instancia revisamos la situación, la documentación disponible y la prueba digital vinculada al conflicto. A partir de ese encuentro definimos si corresponde avanzar y en qué modalidad de intervención."
     },
     {
         icon: Users,
         title: "Trabajo pro bono",
-        description: "Destinamos un cupo limitado de casos pro bono a situaciones de especial vulnerabilidad o relevancia social. La selección de estos casos es discrecional del estudio y se realiza mediante evaluación fundada. Creemos que el ejercicio profesional también tiene una dimensión de responsabilidad pública."
+        description: "Destinamos un cupo limitado de casos pro bono a situaciones de especial vulnerabilidad o relevancia social. La selección de estos casos es discrecional del estudio y se realiza mediante evaluación fundada. Entendemos que el ejercicio profesional también tiene una dimensión de responsabilidad pública."
     },
     {
         icon: MessageSquare,
@@ -48,6 +48,14 @@ export default function QueEsperar() {
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, []);
 
+    const scrollToContact = () => {
+        const element = document.querySelector('#contacto');
+        if (element) {
+            const top = element.getBoundingClientRect().top + window.pageYOffset - 80;
+            window.scrollTo({ top, behavior: 'smooth' });
+        }
+    };
+
     return (
         <section id="que-esperar" ref={sectionRef} className="py-24 md:py-32 bg-navy-deep relative overflow-hidden">
             {/* Background decoration */}
@@ -68,7 +76,7 @@ export default function QueEsperar() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16">
                     {expectations.map((item, index) => (
                         <div
                             key={index}
@@ -83,20 +91,32 @@ export default function QueEsperar() {
                                 <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-accent mb-8 group-hover:bg-accent group-hover:text-white transition-all duration-500 group-hover:scale-110">
                                     <item.icon size={28} />
                                 </div>
-                                <h3 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-accent transition-colors font-montserrat leading-snug">
+                                <h3 className="text-xl md:text-2xl font-bold text-accent mb-4 transition-colors font-montserrat leading-snug">
                                     {item.title}
                                 </h3>
-                                <p className="text-white/40 text-base leading-relaxed font-medium italic">
-                                    “{item.description}”
+                                <p className="text-white/40 text-base leading-relaxed font-medium">
+                                    {item.description}
                                 </p>
                             </div>
                         </div>
                     ))}
 
-                    {/* Decorative block to fill the 6th slot or maintain layout */}
+                    {/* Decorative block */}
                     <div className="hidden lg:flex p-10 rounded-3xl border border-white/5 items-center justify-center opacity-20 grayscale">
                         <ShieldCheck size={80} className="text-white/20" />
                     </div>
+                </div>
+
+                <div className="flex justify-center">
+                    <button
+                        onClick={scrollToContact}
+                        className="px-8 py-4 rounded-xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 hover:border-accent/30 transition-all active:scale-95 flex items-center gap-3 group"
+                    >
+                        <span>Agendar consulta inicial</span>
+                        <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center group-hover:bg-accent transition-colors">
+                            <ClipboardCheck size={18} className="text-accent group-hover:text-white" />
+                        </div>
+                    </button>
                 </div>
             </div>
         </section>
