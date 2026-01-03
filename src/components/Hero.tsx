@@ -1,5 +1,6 @@
-import { ArrowDown, MessageCircle } from 'lucide-react';
+import { ArrowDown, MessageCircle, ChevronRight } from 'lucide-react';
 import AnimatedTerminal from './AnimatedTerminal';
+import ThreeBackground from './ThreeBackground';
 
 export default function Hero() {
   const scrollToSection = (href: string) => {
@@ -12,80 +13,84 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-primary"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy-deep px-4 md:px-0"
     >
-      {/* Tech Grid Background */}
-      <div className="absolute inset-0 tech-grid-dark opacity-50" />
+      {/* 3D Background Resource */}
+      <ThreeBackground />
 
       {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/50 to-primary" />
-      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-accent/20 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-navy-light/30 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/40 via-transparent to-navy-deep z-[1]" />
+      <div className="absolute top-0 right-0 w-3/4 h-3/4 bg-gradient-to-bl from-accent/10 via-transparent to-transparent blur-[120px] z-[1]" />
 
-      {/* Animated Geometric Elements */}
-      <div className="absolute top-1/4 right-1/4 w-64 h-64 border border-primary-foreground/10 rounded-full animate-pulse-slow" />
-      <div className="absolute bottom-1/3 left-1/5 w-48 h-48 border border-primary-foreground/5 rotate-45 animate-pulse-slow animation-delay-500" />
-      <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-accent/10 rounded-lg rotate-12 animate-float" />
+      {/* Grid Overlay (Subtle) */}
+      <div className="absolute inset-0 tech-grid-dark opacity-10 z-[1]" />
 
       {/* Content */}
-      <div className="relative z-10 section-container py-24 md:py-32">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 section-container py-20 md:py-32">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left: Text Content */}
-          <div className="text-center lg:text-left">
-            {/* Tagline */}
-            <p className="text-primary-foreground/60 text-sm md:text-base font-medium tracking-widest uppercase mb-6 opacity-0 animate-fade-in">
-              Derecho · Tecnología · Estrategia
-            </p>
+          <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
+            {/* Tagline / Microcopy */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 mb-8 opacity-0 animate-fade-in">
+              <span className="flex h-2 w-2 rounded-full bg-accent animate-pulse" />
+              <span className="text-[10px] md:text-xs font-bold tracking-[0.15em] text-accent-foreground/90 uppercase">
+                Derecho · Tecnología · Estrategia
+              </span>
+            </div>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-primary-foreground leading-tight mb-8 opacity-0 animate-fade-in-up animation-delay-200">
-              Conflictos tecnológicos traducidos a{' '}
-              <span className="relative">
-                <span className="relative z-10">lenguaje jurídico</span>
-                <span className="absolute bottom-2 left-0 right-0 h-3 bg-accent/30 -z-0" />
-              </span>{' '}
-              claro y operativo.
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-8 opacity-0 animate-fade-in-up animation-delay-200">
+              Marco Rossi: Defensa <br className="hidden md:block" />
+              legal <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">estratégica</span> para <br className="hidden md:block" />
+              la economía digital.
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg md:text-xl text-primary-foreground/70 max-w-2xl mx-auto lg:mx-0 mb-10 opacity-0 animate-fade-in animation-delay-400">
-              Trabajo en conflictos donde la tecnología, los datos, las plataformas 
-              y los sistemas digitales afectan derechos. Entiendo ambos mundos 
-              y construyo soluciones que funcionan.
+            <p className="text-lg md:text-xl lg:text-2xl text-white/60 max-w-2xl mb-12 opacity-0 animate-fade-in animation-delay-400 leading-relaxed font-medium">
+              Abogado especialista en transformar la complejidad tecnológica en soluciones jurídicas sólidas. Docente, autor y asesor de confianza en el ecosistema tech.
+              <span className="block mt-4 text-sm md:text-base text-white/40 font-normal">
+                Donde la innovación encuentra seguridad legal.
+              </span>
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 opacity-0 animate-fade-in animation-delay-500">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full sm:w-auto opacity-0 animate-fade-in animation-delay-500">
               <button
                 onClick={() => scrollToSection('#contacto')}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-primary-foreground text-primary font-semibold rounded-lg hover:bg-primary-foreground/90 transition-all duration-300 hover:shadow-glow group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 bg-white text-navy-deep font-black rounded-xl hover:bg-ice transition-all duration-500 shadow-strong hover:scale-[1.02] group"
               >
-                <MessageCircle size={20} className="group-hover:scale-110 transition-transform" />
+                <MessageCircle size={20} className="group-hover:rotate-12 transition-transform" />
                 Agendar consulta
               </button>
               <button
-                onClick={() => scrollToSection('#que-hago')}
-                className="inline-flex items-center gap-2 px-8 py-4 border border-primary-foreground/30 text-primary-foreground font-medium rounded-lg hover:bg-primary-foreground/10 transition-all duration-300"
+                onClick={() => scrollToSection('#como-trabajo')}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/5 transition-all duration-500 hover:border-white/30 group"
               >
-                Conocer más
+                Ver cómo trabajo
+                <ChevronRight size={18} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
               </button>
             </div>
           </div>
 
-          {/* Right: Terminal */}
-          <div className="opacity-0 animate-fade-in animation-delay-600 hidden md:block">
-            <AnimatedTerminal />
+          {/* Right: Terminal / Visual */}
+          <div className="opacity-0 animate-fade-in animation-delay-600 hidden lg:block perspective-1000">
+            <div className="relative group transition-all duration-700 hover:rotate-y-2 hover:rotate-x-1">
+              <div className="absolute -inset-2 bg-gradient-to-r from-accent/40 to-blue-600/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-30 transition duration-1000"></div>
+              <AnimatedTerminal />
+            </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-700">
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animation-delay-700 hidden md:block">
           <button
             onClick={() => scrollToSection('#que-hago')}
-            className="flex flex-col items-center gap-2 text-primary-foreground/50 hover:text-primary-foreground/80 transition-colors"
+            className="group flex flex-col items-center gap-3 text-white/20 hover:text-white transition-all duration-500"
           >
-            <span className="text-xs font-medium tracking-wider uppercase">Descubrir</span>
-            <ArrowDown size={20} className="animate-bounce" />
+            <span className="text-[10px] font-bold tracking-widest uppercase opacity-50 group-hover:opacity-100">Explorar</span>
+            <div className="h-10 w-6 rounded-full border-2 border-white/10 flex justify-center p-1 group-hover:border-accent">
+              <div className="w-1 h-2 bg-white/40 rounded-full animate-bounce" />
+            </div>
           </button>
         </div>
       </div>

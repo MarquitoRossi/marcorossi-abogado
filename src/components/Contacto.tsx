@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MessageCircle, Send, Mail, Clock, CheckCircle } from 'lucide-react';
+import { MessageCircle, Send, Mail, Clock, CheckCircle, Shield, Zap } from 'lucide-react';
 import { useInView } from '@/hooks/useInView';
 import { useToast } from '@/hooks/use-toast';
 
@@ -31,193 +31,145 @@ export default function Contacto() {
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent(
-      'Hola Marco, me gustaría agendar una consulta inicial.'
+      'Hola Marco, me gustaría agendar una consulta inicial estratégica.'
     );
     window.open(`https://wa.me/5491100000000?text=${message}`, '_blank');
   };
 
   return (
-    <section id="contacto" className="relative py-24 md:py-32 bg-background overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 tech-grid opacity-20" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+    <section id="contacto" className="relative py-24 md:py-32 bg-background overflow-hidden font-montserrat">
+      {/* Background decoration */}
+      <div className="absolute inset-0 tech-grid opacity-20 pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[140px] -z-10" />
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[140px] -z-10" />
 
       <div ref={ref} className="section-container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left Column - Info */}
-          <div>
-            <p
-              className={`text-sm font-semibold text-accent uppercase tracking-widest mb-4 ${
-                isInView ? 'opacity-100 animate-fade-in' : 'opacity-0'
-              }`}
-            >
-              Contacto
-            </p>
-            <h2
-              className={`text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 ${
-                isInView ? 'opacity-100 animate-fade-in-up animation-delay-100' : 'opacity-0'
-              }`}
-            >
-              Hablemos de tu caso.
-            </h2>
-            <p
-              className={`text-lg text-muted-foreground mb-8 ${
-                isInView ? 'opacity-100 animate-fade-in animation-delay-200' : 'opacity-0'
-              }`}
-            >
-              La consulta inicial es estratégica: sirve para entender qué pasó, 
-              evaluar opciones y definir próximos pasos. Sin compromisos, 
-              sin letra chica.
-            </p>
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
-            {/* Info Cards */}
-            <div
-              className={`space-y-4 ${
-                isInView ? 'opacity-100 animate-fade-in animation-delay-300' : 'opacity-0'
-              }`}
-            >
-              <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border/50">
-                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-accent/10 text-accent">
-                  <Clock size={20} />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">Respuesta rápida</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Respondo en menos de 24 horas hábiles.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border/50">
-                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-accent/10 text-accent">
-                  <CheckCircle size={20} />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">Consulta inicial</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Primera reunión para conocer tu situación y evaluar opciones.
-                  </p>
-                </div>
-              </div>
+          {/* Left Column: Intake Paragraph & Benefits */}
+          <div className={`transition-all duration-1000 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/5 border border-accent/10 mb-8">
+              <span className="text-[10px] font-bold tracking-[0.2em] text-accent uppercase">Canales Directos</span>
             </div>
 
-            {/* WhatsApp CTA */}
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-navy-deep mb-8 leading-[1.1]">
+              Iniciemos una <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-500">estrategia ganadora.</span>
+            </h2>
+
+            <p className="text-lg md:text-xl text-slate font-medium leading-relaxed mb-12 max-w-xl">
+              La consulta inicial estratégica es la base de todo éxito legal. Analizamos el plano fáctico, técnico y jurídico para darte una ruta clara.
+            </p>
+
+            {/* Benefits Bullets */}
+            <div className="space-y-6 mb-12">
+              {[
+                { icon: Shield, title: "Confidencialidad Total", desc: "Protocolo de seguridad en comunicaciones." },
+                { icon: Clock, title: "Respuesta Ejecutiva", desc: "Feedback en menos de 24 horas hábiles." },
+                { icon: Zap, title: "Visión Técnica", desc: "No solo abogados, entendemos tu tecnología." }
+              ].map((benefit, i) => (
+                <div key={i} className="flex items-start gap-4 group">
+                  <div className="w-12 h-12 shrink-0 rounded-2xl bg-white shadow-soft border border-navy-deep/5 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-all duration-500 group-hover:scale-110">
+                    <benefit.icon size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-black text-navy-deep text-lg">{benefit.title}</h4>
+                    <p className="text-slate/60 text-sm font-medium">{benefit.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Direct WhatsApp CTA */}
             <button
               onClick={handleWhatsApp}
-              className={`mt-8 inline-flex items-center gap-3 px-6 py-4 bg-[#25D366] text-white font-semibold rounded-xl hover:bg-[#20BD5A] transition-all duration-300 hover:shadow-lg ${
-                isInView ? 'opacity-100 animate-fade-in animation-delay-400' : 'opacity-0'
-              }`}
+              className="group relative flex items-center gap-4 px-10 py-6 bg-[#25D366] text-white font-black rounded-[2rem] transition-all duration-500 hover:bg-[#20BD5A] hover:shadow-[0_20px_40px_rgba(37,211,102,0.3)] hover:-translate-y-1 active:scale-95 w-full sm:w-auto overflow-hidden"
             >
-              <MessageCircle size={22} />
-              Escribime por WhatsApp
+              <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              <MessageCircle size={28} className="relative z-10" />
+              <div className="relative z-10 text-left">
+                <span className="block text-xs opacity-80 uppercase tracking-widest font-bold">Vía Directa</span>
+                <span className="text-lg">Contactar por WhatsApp</span>
+              </div>
             </button>
           </div>
 
-          {/* Right Column - Form */}
-          <div
-            className={`${
-              isInView ? 'opacity-100 animate-fade-in-right animation-delay-200' : 'opacity-0'
-            }`}
-          >
-            <form
-              onSubmit={handleSubmit}
-              className="p-8 md:p-10 bg-card rounded-2xl border border-border/50 shadow-medium"
-            >
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                  <Mail size={20} />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">Enviar mensaje</h3>
-                  <p className="text-sm text-muted-foreground">
-                    O escribime directamente a contacto@marcorossi.com.ar
-                  </p>
-                </div>
-              </div>
+          {/* Right Column: Form */}
+          <div className={`transition-all duration-1000 delay-200 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
+            <div className="relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-accent to-blue-500 rounded-[3rem] blur-2xl opacity-10" />
 
-              <div className="space-y-5">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-foreground mb-2"
+              <form
+                onSubmit={handleSubmit}
+                className="relative p-10 md:p-14 bg-white rounded-[3rem] border border-navy-deep/5 shadow-strong flex flex-col gap-8 group/form overflow-hidden"
+              >
+                {/* Visual Indicator */}
+                <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent scale-x-0 group-hover/form:scale-x-100 transition-transform duration-1000" />
+
+                <div className="flex items-center gap-5">
+                  <div className="w-14 h-14 rounded-2xl bg-navy-deep text-white flex items-center justify-center shadow-lg">
+                    <Mail size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-black text-navy-deep">Envío Seguro</h3>
+                    <p className="text-sm text-slate/40 font-bold uppercase tracking-tighter">contacto@marcorossi.com.ar</p>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-navy-deep/40 ml-1">Tu Identidad</label>
+                    <input
+                      required
+                      type="text"
+                      placeholder="Nombre o Empresa"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-6 py-5 bg-ice-blue/30 border border-navy-deep/5 rounded-2xl text-navy-deep placeholder:text-navy-deep/20 focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all font-medium"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-navy-deep/40 ml-1">Tu Conexión</label>
+                    <input
+                      required
+                      type="email"
+                      placeholder="email@dominio.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-6 py-5 bg-ice-blue/30 border border-navy-deep/5 rounded-2xl text-navy-deep placeholder:text-navy-deep/20 focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all font-medium"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-navy-deep/40 ml-1">Tu Caso</label>
+                    <textarea
+                      required
+                      rows={4}
+                      placeholder="Describe brevemente el conflicto..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-6 py-5 bg-ice-blue/30 border border-navy-deep/5 rounded-2xl text-navy-deep placeholder:text-navy-deep/20 focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all font-medium resize-none"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full flex items-center justify-center gap-3 py-6 bg-navy-deep text-white font-black rounded-2xl hover:bg-accent transition-all duration-500 shadow-glow disabled:opacity-50 active:scale-[0.98] group/btn"
                   >
-                    Nombre
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    required
-                    maxLength={100}
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
-                    placeholder="Tu nombre"
-                  />
+                    {isSubmitting ? (
+                      <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+                    ) : (
+                      <>
+                        <span className="uppercase tracking-[0.2em] text-sm">Ejecutar Envío</span>
+                        <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      </>
+                    )}
+                  </button>
                 </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-foreground mb-2"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    required
-                    maxLength={255}
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
-                    placeholder="tu@email.com"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-foreground mb-2"
-                  >
-                    Mensaje
-                  </label>
-                  <textarea
-                    id="message"
-                    required
-                    maxLength={1000}
-                    rows={4}
-                    value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
-                    className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all resize-none"
-                    placeholder="Contame brevemente tu situación..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-accent transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <span className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                      Enviando...
-                    </>
-                  ) : (
-                    <>
-                      <Send size={18} />
-                      Enviar mensaje
-                    </>
-                  )}
-                </button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>

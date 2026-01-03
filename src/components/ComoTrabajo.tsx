@@ -1,115 +1,124 @@
-import { Search, Cpu, FileText, Target } from 'lucide-react';
-import { useInView } from '@/hooks/useInView';
+import React, { useEffect, useRef, useState } from 'react';
+import { Search, Compass, Target, Rocket, CheckCircle2 } from 'lucide-react';
 
 const steps = [
   {
     icon: Search,
-    number: '01',
-    title: 'Entender qué pasó',
-    description: 'Antes de hablar de derecho, necesito entender el sistema, la plataforma o la tecnología involucrada. Cómo funcionó, qué datos generó, dónde están las pruebas.',
+    title: "Consulta Inicial",
+    description: "Evaluación técnica y jurídica profunda del conflicto.",
+    details: ["Mapeo de actores involucrados", "Análisis de impacto legal inmediato", "Identificación de urgencias"]
   },
   {
-    icon: Cpu,
-    number: '02',
-    title: 'Mapear la evidencia',
-    description: 'Identificar y preservar la evidencia digital relevante. Metadatos, logs, capturas, comunicaciones. Lo que existe en el mundo digital y puede probarse en el jurídico.',
-  },
-  {
-    icon: FileText,
-    number: '03',
-    title: 'Traducir al derecho',
-    description: 'Convertir lo técnico en lenguaje jurídico operativo. No basta con entender el problema: hay que saber cómo plantearlo para que el sistema legal lo procese.',
+    icon: Compass,
+    title: "Diagnóstico Táctico",
+    description: "Identificación de vulnerabilidades y puntos de presión en el sistema.",
+    details: ["Auditoría de evidencia digital", "Revisión de marcos técnicos/normativos", "Definición de rutas de acción"]
   },
   {
     icon: Target,
-    number: '04',
-    title: 'Diseñar la estrategia',
-    description: 'Con el panorama completo, definir objetivos realistas y el camino para alcanzarlos. Negociación, mediación o litigio, según lo que tenga más sentido.',
+    title: "Estrategia de Intervención",
+    description: "Diseño de un plan táctico orientado a resultados operativos claros.",
+    details: ["Planificación de defensa/negociación", "Redacción estratégica", "Preparación de contingencias"]
   },
+  {
+    icon: Rocket,
+    title: "Ejecución & Resolución",
+    description: "Intervención directa y resolución efectiva de la situación.",
+    details: ["Acciones legales directas", "Seguimiento en tiempo real", "Cierre y blindaje futuro"]
+  }
 ];
 
 export default function ComoTrabajo() {
-  const { ref, isInView } = useInView({ threshold: 0.1 });
+  const [activeStep, setActiveStep] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+
+      const stepElements = sectionRef.current.querySelectorAll('.step-item');
+      let currentActive = 0;
+
+      stepElements.forEach((el, index) => {
+        const rect = el.getBoundingClientRect();
+        // If the step is in the mid-viewport area, it becomes active
+        if (rect.top < window.innerHeight / 1.5) {
+          currentActive = index;
+        }
+      });
+
+      setActiveStep(currentActive);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <section id="como-trabajo" className="relative py-24 md:py-32 bg-muted/30 overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute right-0 top-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-      <div className="absolute left-0 bottom-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+    <section id="como-trabajo" ref={sectionRef} className="py-24 md:py-32 bg-navy-deep relative overflow-hidden">
+      {/* Decorative background visual */}
+      <div className="absolute inset-0 tech-grid-dark opacity-10 pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent hidden lg:block" />
 
-      <div ref={ref} className="section-container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left Column - Header */}
-          <div className="lg:sticky lg:top-32">
-            <p
-              className={`text-sm font-semibold text-accent uppercase tracking-widest mb-4 ${
-                isInView ? 'opacity-100 animate-fade-in' : 'opacity-0'
-              }`}
-            >
-              Cómo trabajo
-            </p>
-            <h2
-              className={`text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 ${
-                isInView ? 'opacity-100 animate-fade-in-up animation-delay-100' : 'opacity-0'
-              }`}
-            >
-              Un enfoque diferente para problemas nuevos.
-            </h2>
-            <p
-              className={`text-lg text-muted-foreground mb-8 ${
-                isInView ? 'opacity-100 animate-fade-in animation-delay-200' : 'opacity-0'
-              }`}
-            >
-              El abordaje jurídico tradicional asume que los hechos son claros y solo 
-              hay que encuadrarlos en la ley. Pero en conflictos tecnológicos, muchas veces 
-              ni siquiera es evidente qué pasó, cómo pasó, o dónde está la prueba.
-            </p>
-            <p
-              className={`text-lg text-muted-foreground ${
-                isInView ? 'opacity-100 animate-fade-in animation-delay-300' : 'opacity-0'
-              }`}
-            >
-              Mi enfoque invierte el proceso: primero entender el plano técnico y fáctico, 
-              y recién después construir la estrategia jurídica sobre bases sólidas.
-            </p>
+      <div className="section-container relative z-10">
+        <div className="max-w-3xl mb-16 md:mb-24">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6">
+            <span className="text-[10px] font-bold tracking-widest text-white/50 uppercase">Metodología</span>
           </div>
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+            Un workflow <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">diseñado para ganar.</span>
+          </h2>
+          <p className="text-lg md:text-xl text-white/50 leading-relaxed font-medium">
+            No acumulamos carpetas. Resolvemos problemas. <br className="hidden md:block" />
+            Nuestra estructura de trabajo es ágil, transparente y orientada a la ejecución.
+          </p>
+        </div>
 
-          {/* Right Column - Steps */}
-          <div className="space-y-8">
-            {steps.map((step, index) => (
+        <div className="relative grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-8">
+          {steps.map((step, index) => {
+            const isActive = activeStep >= index;
+            const isCurrent = activeStep === index;
+
+            return (
               <div
-                key={step.number}
-                className={`relative group ${
-                  isInView ? 'opacity-100 animate-fade-in-right' : 'opacity-0'
-                }`}
-                style={{ animationDelay: `${300 + index * 150}ms` }}
+                key={index}
+                className={`step-item relative transition-all duration-700 ${isActive ? 'opacity-100 scale-100' : 'opacity-40 scale-95'}`}
               >
-                {/* Connection Line */}
+                {/* Connection line for desktop */}
                 {index < steps.length - 1 && (
-                  <div className="absolute left-6 top-16 w-px h-16 bg-border" />
+                  <div className={`hidden lg:block absolute top-[2.75rem] left-[5.5rem] w-full h-0.5 z-0 transition-all duration-1000 ${isActive ? 'bg-accent/40' : 'bg-white/10'}`}>
+                    <div className={`h-full bg-blue-400 transition-all duration-1000 shadow-[0_0_15px_rgba(59,130,246,0.5)] ${isActive && activeStep > index ? 'w-full' : isCurrent ? 'w-1/2' : 'w-0'}`} />
+                  </div>
                 )}
 
-                <div className="flex gap-6 p-6 bg-card rounded-xl border border-border/50 hover:border-accent/30 hover:shadow-medium transition-all duration-500">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-sm">
-                      {step.number}
-                    </div>
+                <div className="relative z-10">
+                  <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-10 transition-all duration-500 border-2 ${isCurrent ? 'bg-accent text-white border-accent shadow-[0_0_30px_rgba(59,130,246,0.5)] rotate-3' : isActive ? 'bg-navy-light text-accent border-accent/30' : 'bg-navy-light/50 text-white/20 border-white/10'}`}>
+                    <step.icon size={36} />
+                    <span className="absolute -top-3 -right-3 text-2xl font-black italic text-white/10 select-none">0{index + 1}</span>
                   </div>
-                  <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <step.icon size={18} className="text-accent" />
-                      <h3 className="text-lg font-semibold text-foreground">
-                        {step.title}
-                      </h3>
-                    </div>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
+
+                  <h3 className={`text-2xl font-bold mb-4 transition-colors font-montserrat ${isCurrent ? 'text-white' : 'text-white/60'}`}>
+                    {step.title}
+                  </h3>
+
+                  <p className="text-white/40 text-base mb-8 leading-relaxed font-medium">
+                    {step.description}
+                  </p>
+
+                  <ul className="space-y-3">
+                    {step.details.map((detail, dIdx) => (
+                      <li key={dIdx} className="flex items-start gap-3 text-sm text-white/30 group">
+                        <CheckCircle2 size={16} className={`shrink-0 transition-colors mt-0.5 ${isActive ? 'text-accent' : 'text-white/10'}`} />
+                        <span className="group-hover:text-white/60 transition-colors uppercase tracking-tight font-bold">{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,118 +1,144 @@
-import { FileText, ArrowRight } from 'lucide-react';
-import { useInView } from '@/hooks/useInView';
+import React, { useRef, useState, useEffect } from 'react';
+import { FileCode, BookOpen, Microscope, ArrowUpRight, CheckCircle2, Clock } from 'lucide-react';
 
-const placeholderResources = [
+const modules = [
   {
-    title: 'Próximamente',
-    description: 'Notas, análisis y explicaciones sobre derecho y tecnología.',
-    tag: 'En desarrollo',
+    icon: BookOpen,
+    title: "Publicaciones",
+    version: "2025 Ed.",
+    status: "disponible",
+    desc: "Manuales y artículos académicos sobre la intersección entre sistemas, datos y derechos fundamentales."
   },
   {
-    title: 'Guías prácticas',
-    description: 'Recursos para entender tus derechos en entornos digitales.',
-    tag: 'Próximamente',
+    icon: Microscope,
+    title: "Clases & Cursos",
+    version: "v2.5",
+    status: "inscripciones abiertas",
+    desc: "Material de cátedra universitaria y capacitaciones ejecutivas en derecho tecnológico y ciberseguridad."
   },
   {
-    title: 'Análisis de casos',
-    description: 'Estudio de situaciones reales y cómo se resolvieron.',
-    tag: 'Próximamente',
-  },
+    icon: FileCode,
+    title: "Modelos & Protocolos",
+    version: "v1.2.0",
+    status: "disponible",
+    desc: "Herramientas técnicas y marcos legales pre-diseñados para la gobernanza de datos y privacidad."
+  }
+];
+
+const roadmap = [
+  { q: "Q1 2025", task: "Lanzamiento Libro: IA & Proceso Judicial", status: "completed" },
+  { q: "Q2 2025", task: "Seminario: Litigio en Entornos Digitales", status: "in-progress" },
+  { q: "Q3 2025", task: "Publicación: Reporte Anual de Tech Law", status: "planned" }
 ];
 
 export default function Recursos() {
-  const { ref, isInView } = useInView({ threshold: 0.1 });
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        setMousePos({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        });
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
-    <section id="recursos" className="relative py-24 md:py-32 bg-muted/30 overflow-hidden">
-      <div ref={ref} className="section-container relative z-10">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
-          <div>
-            <p
-              className={`text-sm font-semibold text-accent uppercase tracking-widest mb-4 ${
-                isInView ? 'opacity-100 animate-fade-in' : 'opacity-0'
-              }`}
-            >
-              Recursos
-            </p>
-            <h2
-              className={`text-3xl md:text-4xl lg:text-5xl font-bold text-foreground ${
-                isInView ? 'opacity-100 animate-fade-in-up animation-delay-100' : 'opacity-0'
-              }`}
-            >
-              Ideas y herramientas.
-            </h2>
-          </div>
-          <p
-            className={`text-muted-foreground max-w-md ${
-              isInView ? 'opacity-100 animate-fade-in animation-delay-200' : 'opacity-0'
-            }`}
-          >
-            Un espacio en construcción para compartir análisis, explicaciones 
-            y recursos sobre derecho y tecnología.
-          </p>
-        </div>
+    <section id="recursos" ref={sectionRef} className="py-24 md:py-32 bg-ice-blue relative overflow-hidden">
+      <div className="absolute inset-0 tech-grid opacity-20 pointer-events-none" />
 
-        {/* Resources Grid */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {placeholderResources.map((resource, index) => (
-            <div
-              key={resource.title}
-              className={`group relative p-6 md:p-8 bg-card rounded-xl border border-border/50 hover:border-accent/30 transition-all duration-500 ${
-                isInView ? 'opacity-100 animate-fade-in-up' : 'opacity-0'
-              }`}
-              style={{ animationDelay: `${200 + index * 100}ms` }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-muted text-muted-foreground">
-                  <FileText size={20} />
+      <div className="section-container relative z-10">
+        <div className="grid lg:grid-cols-3 gap-16 lg:gap-24">
+          {/* Left Column: Lab Info */}
+          <div className="lg:col-span-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-deep/5 border border-navy-deep/10 mb-8">
+              <span className="text-[10px] font-bold tracking-[0.2em] text-navy-deep/60 uppercase font-montserrat">Biblioteca & Publicaciones</span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-black text-navy-deep mb-8 leading-tight font-montserrat">
+              Recursos de <br />
+              <span className="text-accent underline decoration-accent/30 underline-offset-8">Marco Rossi.</span>
+            </h2>
+
+            <p className="text-lg md:text-xl text-slate font-medium leading-relaxed mb-12 max-w-2xl">
+              Un repositorio de conocimiento donde el derecho se encuentra con la tecnología. Guías, manuales y herramientas para navegar la era digital.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {modules.map((mod, i) => (
+                <div key={i} className="tech-card p-8 rounded-3xl bg-white border border-navy-deep/5 group hover:shadow-strong transition-all duration-500"
+                  style={{
+                    '--mouse-x': `${mousePos.x}px`,
+                    '--mouse-y': `${mousePos.y}px`,
+                  } as React.CSSProperties}>
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-navy-deep/5 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-all">
+                      <mod.icon size={24} />
+                    </div>
+                    <span className="font-mono text-[10px] font-bold text-navy-deep/40 bg-navy-deep/5 px-2 py-1 rounded tracking-tighter">
+                      {mod.version}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold text-navy-deep mb-3 font-montserrat">{mod.title}</h3>
+                  <p className="text-slate text-sm leading-relaxed mb-6">
+                    {mod.desc}
+                  </p>
+                  <div className="flex items-center justify-between pt-6 border-t border-navy-deep/5">
+                    <span className={`text-[10px] font-black uppercase tracking-widest ${mod.status === 'disponible' ? 'text-blue-500' : 'text-navy-deep/30'}`}>
+                      {mod.status}
+                    </span>
+                    <button className="text-navy-deep group-hover:text-accent transition-colors">
+                      <ArrowUpRight size={18} />
+                    </button>
+                  </div>
                 </div>
-                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-2 py-1 bg-muted rounded">
-                  {resource.tag}
-                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column: Roadmap */}
+          <div className="lg:col-span-1">
+            <div className="p-10 rounded-[2.5rem] bg-navy-deep text-white shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-5">
+                <BookOpen size={120} />
               </div>
 
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                {resource.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                {resource.description}
-              </p>
+              <h3 className="text-2xl font-black mb-10 font-montserrat">Próximos Pasos</h3>
 
-              <div className="flex items-center gap-2 text-sm text-accent/60">
-                <span>Disponible pronto</span>
-                <ArrowRight size={14} />
+              <div className="space-y-10 relative">
+                {/* Timeline line */}
+                <div className="absolute left-3 top-2 bottom-2 w-px bg-white/10" />
+
+                {roadmap.map((item, i) => (
+                  <div key={i} className="relative pl-10 group">
+                    <div className={`absolute left-0 top-1.5 w-6 h-6 rounded-full border-4 border-navy-deep z-10 flex items-center justify-center transition-all ${item.status === 'completed' ? 'bg-accent' : item.status === 'in-progress' ? 'bg-blue-500 animate-pulse' : 'bg-white/10'}`}>
+                      {item.status === 'completed' && <CheckCircle2 size={12} className="text-white" />}
+                      {item.status === 'in-progress' && <Clock size={12} className="text-white" />}
+                    </div>
+
+                    <div className="text-[10px] font-black tracking-widest text-accent uppercase mb-1 font-montserrat">
+                      {item.q}
+                    </div>
+                    <div className={`text-sm font-bold leading-snug transition-colors ${item.status === 'planned' ? 'text-white/40' : 'text-white'}`}>
+                      {item.task}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-16 pt-10 border-t border-white/5">
+                <p className="text-xs text-white/30 font-medium leading-relaxed italic">
+                  * Publicaciones y lanzamientos sujetos a la agenda de investigación académica y profesional.
+                </p>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Newsletter placeholder */}
-        <div
-          className={`mt-12 md:mt-16 p-8 md:p-12 bg-card rounded-2xl border border-border/50 text-center ${
-            isInView ? 'opacity-100 animate-fade-in animation-delay-500' : 'opacity-0'
-          }`}
-        >
-          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
-            Mantenete informado
-          </h3>
-          <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-            Próximamente, un newsletter con novedades sobre derecho y tecnología. 
-            Sin spam, solo contenido relevante.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="tu@email.com"
-              disabled
-              className="flex-1 px-4 py-3 bg-muted border border-border rounded-lg text-sm placeholder:text-muted-foreground/50 opacity-50 cursor-not-allowed"
-            />
-            <button
-              disabled
-              className="px-6 py-3 bg-muted text-muted-foreground font-medium rounded-lg text-sm opacity-50 cursor-not-allowed"
-            >
-              Próximamente
-            </button>
           </div>
         </div>
       </div>

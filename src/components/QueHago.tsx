@@ -1,95 +1,110 @@
-import { Shield, Globe, Scale, Database, Lock, AlertTriangle } from 'lucide-react';
-import { useInView } from '@/hooks/useInView';
+import React, { useRef, useState, useEffect } from 'react';
+import { Network, ShieldCheck, Fingerprint, AlertCircle, FileCode, Handshake } from 'lucide-react';
 
-const areas = [
+const expertises = [
   {
-    icon: Globe,
-    title: 'Plataformas y redes',
-    description: 'Conflictos con redes sociales, marketplaces, apps y servicios digitales. Cuando las reglas del juego cambian sin aviso.',
+    icon: Network,
+    title: "Responsabilidad en Plataformas",
+    description: "Gestión de conflictos por contenido, algoritmos y bloqueos en redes sociales.",
+    example: "Ej: Recuperación de cuentas o defensa ante censura automatizada."
   },
   {
-    icon: Database,
-    title: 'Datos y privacidad',
-    description: 'Uso indebido de información personal, filtraciones, perfilamiento. La frontera entre lo que pueden y no pueden hacer con tus datos.',
+    icon: ShieldCheck,
+    title: "Protección de Datos & IA",
+    description: "Cumplimiento normativo y defensa en el uso estratégico de grandes volúmenes de datos.",
+    example: "Ej: Auditoría legal de modelos LLM y privacidad por diseño."
   },
   {
-    icon: Lock,
-    title: 'Evidencia digital',
-    description: 'Preservación, análisis y presentación de prueba electrónica. Que lo que pasó en el mundo digital se pueda probar en el jurídico.',
+    icon: Fingerprint,
+    title: "Forensics & Prueba Digital",
+    description: "Aseguramiento y validez jurídica de evidencia recolectada en entornos digitales.",
+    example: "Ej: Certificación de cadenas de custodia para litigios complejos."
   },
   {
-    icon: AlertTriangle,
-    title: 'Daños en entornos digitales',
-    description: 'Estafas online, suplantación de identidad, difamación, phishing. Cuando el daño se produce a través de pantallas.',
+    icon: AlertCircle,
+    title: "Daños & Ciberseguridad",
+    description: "Litigios derivados de brechas de seguridad, suplantación y estafas tecnológicas.",
+    example: "Ej: Reclamos por responsabilidad civil ante fallos de seguridad."
   },
   {
-    icon: Shield,
-    title: 'Propiedad intelectual digital',
-    description: 'Contenido, creaciones, marcas y obras en el ecosistema online. Proteger lo que creás en el mundo digital.',
+    icon: FileCode,
+    title: "IP & Activos Digitales",
+    description: "Protección de software, algoritmos y nuevas formas de propiedad intelectual.",
+    example: "Ej: Blindaje de código fuente y registro de activos intangibles."
   },
   {
-    icon: Scale,
-    title: 'Contratos tecnológicos',
-    description: 'SaaS, licencias, términos de servicio, desarrollo de software. El derecho detrás de los clicks de "Acepto".',
-  },
+    icon: Handshake,
+    title: "Smart Contracts & SaaS",
+    description: "Diseño y ejecución de acuerdos tecnológicos robustos para el mundo real.",
+    example: "Ej: Redacción de SLA y estructuración legal de software crítico."
+  }
 ];
 
 export default function QueHago() {
-  const { ref, isInView } = useInView({ threshold: 0.1 });
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        setMousePos({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        });
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
-    <section id="que-hago" className="relative py-24 md:py-32 bg-background overflow-hidden">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 tech-grid opacity-30" />
-      <div className="absolute top-0 left-0 right-0 h-32 gradient-fade-top" />
+    <section id="que-hago" ref={sectionRef} className="py-24 md:py-32 bg-ice-blue relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 w-full h-full tech-grid opacity-20 pointer-events-none" />
 
-      <div ref={ref} className="section-container relative z-10">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16 md:mb-20">
-          <p
-            className={`text-sm font-semibold text-accent uppercase tracking-widest mb-4 ${
-              isInView ? 'opacity-100 animate-fade-in' : 'opacity-0'
-            }`}
-          >
-            Qué hago
-          </p>
-          <h2
-            className={`text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 ${
-              isInView ? 'opacity-100 animate-fade-in-up animation-delay-100' : 'opacity-0'
-            }`}
-          >
-            Cuando la tecnología complica, el derecho tiene que resolver.
+      <div className="section-container relative z-10">
+        <div className="max-w-3xl mb-16 md:mb-24">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-deep/5 border border-navy-deep/10 mb-6">
+            <span className="text-[10px] font-bold tracking-widest text-navy-deep/60 uppercase">Especialidades</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black text-navy-deep mb-6">
+            Resolvemos lo que la <br />
+            <span className="text-accent underline decoration-accent/30 underline-offset-8">justicia tradicional</span> no entiende.
           </h2>
-          <p
-            className={`text-lg text-muted-foreground ${
-              isInView ? 'opacity-100 animate-fade-in animation-delay-200' : 'opacity-0'
-            }`}
-          >
-            No se trata solo de entender códigos o leyes por separado. Se trata de 
-            conectar lo que pasó en el sistema con lo que dice el derecho, y construir 
-            una estrategia que funcione en ambos mundos.
+          <p className="text-lg md:text-xl text-slate leading-relaxed">
+            Arquitectura legal aplicada a los retos más complejos del entorno digital. No solo aplicamos la ley, entendemos el código.
           </p>
         </div>
 
-        {/* Areas Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {areas.map((area, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {expertises.map((item, index) => (
             <div
-              key={area.title}
-              className={`group p-6 md:p-8 bg-card rounded-xl border border-border/50 hover:border-accent/30 hover:shadow-medium transition-all duration-500 ${
-                isInView ? 'opacity-100 animate-fade-in-up' : 'opacity-0'
-              }`}
-              style={{ animationDelay: `${200 + index * 100}ms` }}
+              key={index}
+              className="tech-card p-8 md:p-10 rounded-3xl bg-white/80 backdrop-blur-sm shadow-soft border border-navy-deep/5 transition-all duration-500 hover:shadow-strong group"
+              style={{
+                '--mouse-x': `${mousePos.x}px`,
+                '--mouse-y': `${mousePos.y}px`,
+              } as React.CSSProperties}
             >
-              <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-accent/10 text-accent mb-5 group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-300">
-                <area.icon size={24} />
+              <div className="relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-navy-deep/5 flex items-center justify-center text-accent mb-8 group-hover:bg-accent group-hover:text-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+                  <item.icon size={28} />
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-navy-deep mb-4 group-hover:text-accent transition-colors font-montserrat">
+                  {item.title}
+                </h3>
+                <p className="text-slate text-base mb-6 leading-relaxed">
+                  {item.description}
+                </p>
+                <div className="pt-6 border-t border-navy-deep/5">
+                  <span className="text-xs font-bold text-accent/80 tracking-wide uppercase block mb-1">Misión</span>
+                  <span className="text-sm text-navy-deep/60 italic leading-snug">
+                    {item.example}
+                  </span>
+                </div>
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-3">
-                {area.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {area.description}
-              </p>
             </div>
           ))}
         </div>
