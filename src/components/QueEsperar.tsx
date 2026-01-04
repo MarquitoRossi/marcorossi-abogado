@@ -80,7 +80,7 @@ export default function QueEsperar() {
                     {expectations.map((item, index) => (
                         <div
                             key={index}
-                            className={`tech-card p-8 md:p-10 rounded-3xl bg-white/5 border border-white/10 transition-all duration-500 hover:bg-white/10 group ${index === 3 || index === 4 ? 'lg:col-span-1.5 md:col-span-1' : ''
+                            className={`tech-card p-8 md:p-10 rounded-3xl bg-white/5 border border-white/10 transition-all duration-500 hover:bg-white hover:shadow-2xl group ${index === 3 || index === 4 ? 'lg:col-span-1.5 md:col-span-1' : ''
                                 }`}
                             style={{
                                 '--mouse-x': `${mousePos.x}px`,
@@ -88,13 +88,13 @@ export default function QueEsperar() {
                             } as React.CSSProperties}
                         >
                             <div className="relative z-10">
-                                <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-accent mb-8 group-hover:bg-accent group-hover:text-white transition-all duration-500 group-hover:scale-110">
+                                <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-accent mb-8 group-hover:bg-navy-deep/5 transition-all duration-500 group-hover:scale-110">
                                     <item.icon size={28} />
                                 </div>
-                                <h3 className="text-xl md:text-2xl font-bold text-accent mb-4 transition-colors font-montserrat leading-snug">
+                                <h3 className="text-xl md:text-2xl font-bold text-accent group-hover:text-navy-deep mb-4 transition-colors font-montserrat leading-snug">
                                     {item.title}
                                 </h3>
-                                <p className="text-white/40 text-base leading-relaxed font-medium">
+                                <p className="text-white/40 group-hover:text-navy-deep/70 text-base leading-relaxed font-medium transition-colors">
                                     {item.description}
                                 </p>
                             </div>
@@ -112,7 +112,7 @@ export default function QueEsperar() {
                         onClick={scrollToContact}
                         className="px-8 py-4 rounded-xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 hover:border-accent/30 transition-all active:scale-95 flex items-center gap-3 group"
                     >
-                        <span>Agendar consulta inicial</span>
+                        <span>Agendar consulta</span>
                         <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center group-hover:bg-accent transition-colors">
                             <ClipboardCheck size={18} className="text-accent group-hover:text-white" />
                         </div>

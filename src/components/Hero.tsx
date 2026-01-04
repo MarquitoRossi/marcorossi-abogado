@@ -1,8 +1,20 @@
+import { useState } from 'react';
 import { ArrowDown, MessageCircle, ChevronRight } from 'lucide-react';
-import AnimatedTerminal from './AnimatedTerminal';
+import PixelatedScale from './PixelatedScale';
+import DigitalTerminal from './DigitalTerminal';
 import ThreeBackground from './ThreeBackground';
 
 export default function Hero() {
+  const [terminalDone, setTerminalDone] = useState(false);
+  const [explodeParticles, setExplodeParticles] = useState(false);
+
+  const handleTerminalComplete = () => {
+    // Trigger explosion first
+    setExplodeParticles(true);
+    // Then minimize terminal after short delay
+    setTimeout(() => setTerminalDone(true), 800);
+  };
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -67,11 +79,30 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right: Terminal / Visual */}
-          <div className="opacity-0 animate-fade-in animation-delay-600 hidden lg:block perspective-1000">
-            <div className="relative group transition-all duration-700 hover:rotate-y-2 hover:rotate-x-1">
-              <div className="absolute -inset-2 bg-gradient-to-r from-accent/40 to-blue-600/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-30 transition duration-1000"></div>
-              <AnimatedTerminal />
+          {/* Right: Hybrid Hero (Terminal + Particles) */}
+          <div className="absolute top-[10%] inset-x-0 md:static md:inset-auto md:block perspective-1000 h-[480px] md:h-auto pointer-events-none md:pointer-events-auto z-0 md:z-auto opacity-100">
+            <div className="w-[320px] h-[480px] md:w-[480px] md:h-[580px] xl:w-[560px] xl:h-[700px] relative mx-auto md:absolute md:right-[20px] xl:right-[40px] md:top-1/2 md:-translate-y-1/2 flex flex-col items-center justify-center">
+
+              {/* Layer 2: Digital Console (Foreground) */}
+              <div
+                className={`relative z-20 w-full transform transition-all duration-1000 ease-in-out ${terminalDone
+                  ? 'opacity-0 scale-75 translate-y-10 pointer-events-none'
+                  : 'opacity-100 scale-100 md:scale-95 xl:scale-100'
+                  } mb-8 md:mb-12`}
+              >
+                <DigitalTerminal onComplete={handleTerminalComplete} />
+              </div>
+
+              {/* Layer 1: Ambient Particles (Background -> Foreground with Explosion) */}
+              <div
+                className={`absolute z-10 w-[500px] h-[500px] pointer-events-none flex items-center justify-center transition-all duration-1000 ease-in-out ${terminalDone
+                    ? 'bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 scale-110 opacity-100 blur-0'
+                    : 'bottom-[-60px] md:bottom-[-20px] xl:bottom-[0px] left-1/2 -translate-x-1/2 scale-[0.6] opacity-30 blur-[1px]'
+                  }`}
+              >
+                <PixelatedScale triggerExplosion={explodeParticles} />
+              </div>
+
             </div>
           </div>
         </div>
