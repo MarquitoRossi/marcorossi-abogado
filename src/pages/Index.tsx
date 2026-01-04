@@ -3,7 +3,7 @@ import Hero from '@/components/Hero';
 import QueHago from '@/components/QueHago';
 import QueEsperar from '@/components/QueEsperar';
 import Servicios from '@/components/Servicios';
-import QuienSoy from '@/components/QuienSoy';
+import QuienesSomos from '@/components/QuienesSomos';
 import Recursos from '@/components/Recursos';
 import Contacto from '@/components/Contacto';
 import Footer from '@/components/Footer';
@@ -17,7 +17,7 @@ export default function Index() {
         <QueHago />
         <QueEsperar />
         <Servicios />
-        <QuienSoy />
+        <QuienesSomos />
         <Recursos />
         <Contacto />
       </main>

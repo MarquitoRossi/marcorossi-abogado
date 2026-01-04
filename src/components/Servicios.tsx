@@ -15,7 +15,7 @@ const services = [
   {
     icon: ShoppingBag,
     title: "Protección avanzada del consumidor",
-    description: "Asistimos a personas frente a bancos, aerolíneas, plataformas digitales, concesionarias, servicios financieros y comercios electrónicos. Actuamos en compras incumplidas, débitos indebidos, fraudes, cancelaciones, retención de dinero y trato indigno."
+    description: "Asistimos a personas frente a bancos, aerolíneas, plataformas digitales, con cesionarias, servicios financieros y comercios electrónicos. Actuamos en compras incumplidas, débitos indebidos, fraudes, cancelaciones, retención de dinero y trato indigno."
   },
   {
     icon: Users,
@@ -57,49 +57,60 @@ export default function Servicios() {
   }, []);
 
   return (
-    <section id="servicios" ref={sectionRef} className="py-24 md:py-32 bg-white relative overflow-hidden">
+    <section
+      id="servicios"
+      ref={sectionRef}
+      className="py-24 md:py-32 bg-white relative"
+      style={{ minHeight: '300vh' }}
+    >
       {/* Subtle grid background */}
       <div className="absolute inset-0 tech-grid opacity-10 pointer-events-none" />
 
       <div className="section-container relative z-10">
-        <div className="max-w-4xl mb-16 md:mb-24">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-deep/5 border border-navy-deep/10 mb-6">
-            <span className="text-[10px] font-bold tracking-widest text-navy-deep/60 uppercase font-montserrat tracking-[0.2em]">Ecosistema Legal</span>
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
+
+          {/* Left Column: Title & Intro (Sticky) */}
+          <div className="lg:w-2/5 lg:sticky lg:top-32 h-fit">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-deep/5 border border-navy-deep/10 mb-6">
+              <span className="text-[10px] font-bold tracking-widest text-navy-deep/60 uppercase font-montserrat tracking-[0.2em]">Ecosistema Legal</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-navy-deep mb-8 leading-tight font-montserrat">
+              Servicios <br />
+              <span className="text-accent underline decoration-accent/30 underline-offset-8">profesionales.</span>
+            </h2>
+            <p className="text-lg md:text-xl text-slate font-medium leading-relaxed">
+              Ofrecemos servicios jurídicos orientados a resolver problemas concretos de personas, empresas y organizaciones. Trabajamos con seriedad, estrategia y experiencia real en tribunales. Cada servicio está pensado para acompañarte desde la consulta inicial hasta la instancia judicial que corresponda.
+            </p>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-navy-deep mb-8 leading-tight font-montserrat">
-            Servicios <span className="text-accent underline decoration-accent/30 underline-offset-8">profesionales.</span>
-          </h2>
-          <p className="text-lg md:text-xl text-slate font-medium leading-relaxed max-w-3xl">
-            Ofrecemos servicios jurídicos orientados a resolver problemas concretos de personas, empresas y organizaciones. Trabajamos con seriedad, estrategia y experiencia real en tribunales. Cada servicio está pensado para acompañarte desde la consulta inicial hasta la instancia judicial que corresponda.
-          </p>
-        </div>
 
-        <div className="space-y-16 md:space-y-24">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="group relative"
-            >
-              <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
-                {/* Numbering and layout indicator */}
-                <div className="hidden md:flex flex-col items-center">
-                  <div className="text-4xl font-black text-accent/10 font-montserrat group-hover:text-accent/30 transition-all duration-500 scale-90 group-hover:scale-100">
-                    {String(index + 1).padStart(2, '0')}
-                  </div>
-                  <div className="w-[2px] h-32 bg-gradient-to-b from-accent/20 via-accent/5 to-transparent mt-6 group-last:hidden" />
-                </div>
-
-                <div className="flex-1">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-accent/5 flex items-center justify-center text-accent md:hidden">
-                      <service.icon size={24} />
+          {/* Right Column: Stacking Cards Wrapper */}
+          <div className="lg:w-3/5 relative pt-20">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="sticky bg-white tech-card p-10 md:p-14 rounded-[2.5rem] border border-navy-deep/10 shadow-2xl mb-12 last:mb-0 transition-all duration-500 hover:scale-[1.02]"
+                style={{
+                  top: '120px',
+                  zIndex: index + 1,
+                  '--mouse-x': `${mousePos.x}px`,
+                  '--mouse-y': `${mousePos.y}px`,
+                } as React.CSSProperties}
+              >
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-10">
+                    <div className="w-14 h-14 rounded-2xl bg-accent/5 flex items-center justify-center text-accent">
+                      <service.icon size={28} />
                     </div>
-                    <h3 className="text-2xl md:text-4xl font-black text-navy-deep group-hover:text-accent transition-all duration-500 font-montserrat leading-tight">
-                      {service.title}
-                    </h3>
+                    <div className="text-2xl font-black text-accent/20 font-montserrat">
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
                   </div>
 
-                  <p className="text-lg md:text-xl text-navy-deep/60 font-medium leading-relaxed mb-8 max-w-4xl">
+                  <h3 className="text-2xl md:text-3xl font-black text-accent mb-6 font-montserrat leading-tight group-hover:text-accent transition-colors">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-lg text-navy-deep/70 font-medium leading-relaxed mb-10">
                     {service.description}
                   </p>
 
@@ -111,11 +122,9 @@ export default function Servicios() {
                   </button>
                 </div>
               </div>
+            ))}
+          </div>
 
-              {/* Subtle divider for all screens */}
-              <div className="w-full h-px bg-gradient-to-r from-navy-deep/5 via-navy-deep/5 to-transparent mt-16 md:mt-24 group-last:hidden" />
-            </div>
-          ))}
         </div>
       </div>
     </section>
