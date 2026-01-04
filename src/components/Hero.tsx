@@ -40,7 +40,7 @@ export default function Hero() {
 
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-8 opacity-0 animate-fade-in-up animation-delay-200">
-              Marco Rossi. <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Abogado litigante</span> que trabaja en equipo para defender tus derechos en la era digital.
+              Marco Rossi. <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Abogado</span> que defiende tus derechos en la era digital.
             </h1>
 
             {/* Subheadline */}
