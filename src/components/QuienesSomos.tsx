@@ -7,7 +7,7 @@ const team = [
         name: "Marco Rossi",
         role: "Abogado litigante – Estrategia judicial y prueba electrónica",
         image: "/team/marco.jpg",
-        bio: "Lidera la defensa estratégica en casos de alta complejidad tecnológica y procesal. Con una sólida trayectoria en la Justicia Federal, combina su formación jurídica con una profunda comprensión de la infraestructura digital.",
+        bio: "Lidera la defensa estratégica en casos de alta complejidad tecnológica y procesal. Con una sólida trayectoria en la Justicia, combina su formación jurídica con una profunda comprensión de la infraestructura digital.",
         isPrincipal: true
     },
     {
@@ -49,7 +49,7 @@ const multimedia = {
         { title: "Manual de Derecho Informático", cover: "bg-accent/20" },
         { title: "Tratado de la Prueba Digital", cover: "bg-blue-600/20" },
         { title: "Estrategias de Litigación Tech", cover: "bg-navy-light" },
-        { title: "Justicia Federal y Tecnología", cover: "bg-accent/10" }
+        { title: "Justicia y Tecnología", cover: "bg-accent/10" }
     ]
 };
 
@@ -140,7 +140,7 @@ export default function QuienesSomos() {
 
                         <div className="grid grid-cols-2 gap-4">
                             {[
-                                { label: "Justicia Federal", icon: Award },
+                                { label: "Justicia", icon: Award },
                                 { label: "Prueba Digital", icon: Terminal },
                                 { label: "Litigio Tech", icon: Scale },
                                 { label: "Academia", icon: BookOpen }

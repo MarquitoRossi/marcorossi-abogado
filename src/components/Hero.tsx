@@ -45,7 +45,7 @@ export default function Hero() {
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl lg:text-2xl text-white/60 max-w-3xl mb-12 opacity-0 animate-fade-in animation-delay-400 leading-relaxed font-medium">
-              Los conflictos actuales requieren una visión multidisciplinaria. Nuestra experiencia dentro de la Justicia Federal y el dominio de la tecnología nos permiten construir defensas invulnerables en entornos digitales complejos.
+              Los conflictos actuales requieren una visión multidisciplinaria. Nuestra experiencia dentro de la Justicia y el dominio de la tecnología nos permiten construir defensas invulnerables en entornos digitales complejos.
             </p>
 
             {/* CTA Buttons */}
