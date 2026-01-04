@@ -1,19 +1,21 @@
-import { Linkedin, Instagram, Mail } from 'lucide-react';
-import logo from '@/assets/logo-light.png';
+import { Linkedin, Instagram, Mail, MessageCircle } from 'lucide-react';
+import logo from '@/assets/logo-white.svg';
 
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
-  { href: '#que-hago', label: 'Qué hago' },
-  { href: '#como-trabajo', label: 'Cómo trabajo' },
+  { href: '#especialidades', label: 'Especialidades' },
+  { href: '#que-esperar', label: 'Nuestro estudio' },
   { href: '#servicios', label: 'Servicios' },
-  { href: '#quien-soy', label: 'Quién soy' },
+  { href: '#quienes-somos', label: 'Quiénes Somos' },
   { href: '#contacto', label: 'Contacto' },
+  { href: '#recursos', label: 'Recursos' },
 ];
 
 const socialLinks = [
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
+  { icon: Linkedin, href: 'https://ar.linkedin.com/in/marcorossi9', label: 'LinkedIn' },
+  { icon: Instagram, href: 'https://www.instagram.com/marquitorossi/', label: 'Instagram' },
   { icon: Mail, href: 'mailto:contacto@marcorossi.com.ar', label: 'Email' },
+  { icon: MessageCircle, href: 'https://wa.me/5493813007791', label: 'WhatsApp' },
 ];
 
 export default function Footer() {
@@ -41,8 +43,8 @@ export default function Footer() {
               className="h-10 md:h-12 w-auto mb-6"
             />
             <p className="text-primary-foreground/70 max-w-md leading-relaxed mb-6">
-              Conflictos tecnológicos traducidos a lenguaje jurídico claro y operativo. 
-              Abogado especializado en la intersección entre derecho y tecnología.
+              Defensa legal estratégica centrada en la protección de derechos en entornos digitales complejos.
+              Experiencia judicial y técnica para una justicia moderna y efectiva.
             </p>
             <div className="flex items-center gap-4">
               {socialLinks.map((social) => (
@@ -103,18 +105,6 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
-              <li>
-                <a
-                  href="#recursos"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection('#recursos');
-                  }}
-                  className="text-primary-foreground/60 hover:text-primary-foreground transition-colors duration-300"
-                >
-                  Recursos
-                </a>
-              </li>
             </ul>
           </div>
         </div>
