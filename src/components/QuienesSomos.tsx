@@ -5,21 +5,21 @@ import { useRef, useState, useEffect } from 'react';
 const team = [
     {
         name: "Marco Rossi",
-        role: "Abogado litigante – Estrategia judicial y prueba electrónica",
+        role: "Abogado asociado – Especialista en procesos judiciales y prueba electrónica",
         image: "/team/marco.jpg",
-        bio: "Lidera la defensa estratégica en casos de alta complejidad tecnológica y procesal. Con una sólida trayectoria en la Justicia, combina su formación jurídica con una profunda comprensión de la infraestructura digital.",
+        bio: "Lidera la defensa estratégica en casos de alta complejidad. Fue funcionario y relator de Juez  en la Justicia, combina su formación jurídica con una profunda comprensión de la infraestructura digital.",
         isPrincipal: true
     },
     {
         name: "Facundo Castillo",
         role: "Abogado asociado",
         image: "/team/facundo.jpg",
-        bio: "Especialista en derecho civil y comercial con enfoque en litigación estratégica. Participa activamente en la gestión de expedientes y defensa de empresas y particulares.",
+        bio: "Especialista en Derecho Laboral con enfoque en litigación estratégica contra ART. Participa activamente en la gestión de expedientes y defensa de empresas y particulares.",
         linkedin: "https://linkedin.com"
     },
     {
         name: "Vancis Roda",
-        role: "Asesor y perito de parte",
+        role: "Asesor auxiliar y perito de parte",
         image: "/team/vancis.jpg",
         bio: "Experto en análisis de evidencia informática y peritajes técnicos. Brinda el soporte científico necesario para la validación de pruebas en entornos digitales complejos.",
         linkedin: "https://linkedin.com"
