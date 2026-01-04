@@ -40,12 +40,12 @@ export default function Hero() {
 
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-8 opacity-0 animate-fade-in-up animation-delay-200">
-              Marco Rossi. <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Abogado litigante</span> con foco en prueba digital.
+              Marco Rossi. <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Abogado litigante</span> que trabaja en equipo para defender tus derechos en la era digital.
             </h1>
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl lg:text-2xl text-white/60 max-w-3xl mb-12 opacity-0 animate-fade-in animation-delay-400 leading-relaxed font-medium">
-              Los conflictos actuales siempre dejan rastro en el entorno digital. Haber trabajado casi diez años dentro de la Justicia me permite comprender cómo se deciden los casos y transformar esa experiencia en estrategias eficaces para conflictos jurídicos complejos.
+              Los conflictos actuales requieren una visión multidisciplinaria. Nuestra experiencia dentro de la Justicia Federal y el dominio de la tecnología nos permiten construir defensas invulnerables en entornos digitales complejos.
             </p>
 
             {/* CTA Buttons */}
@@ -58,7 +58,7 @@ export default function Hero() {
                 Agendar consulta
               </button>
               <button
-                onClick={() => scrollToSection('#como-trabajo')}
+                onClick={() => scrollToSection('#que-esperar')}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/5 transition-all duration-500 hover:border-white/30 group"
               >
                 Ver cómo trabajo
